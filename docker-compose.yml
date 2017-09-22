@@ -23,9 +23,7 @@ services:
 ### PHP-FPM Container #######################################
 
     php-fpm-71:
-      build:
-        context: ./php-fpm
-        dockerfile: "Dockerfile-71"
+      images: jerichen/php71:latest
       volumes:
         - ${NGINX_HTML_PATH}:/var/www/html
         - ${PHP_FPM_LOG_PATH}:/var/log/php-fpm
