@@ -34,8 +34,7 @@ services:
 
     php-fpm-56:
       build:
-        context: ./php-fpm
-        dockerfile: "Dockerfile-56"
+        images: jerichen/php56:latest
       volumes:
         - ${NGINX_HTML_PATH}:/var/www/html
         - ${PHP_FPM_LOG_PATH}:/var/log/php-fpm
