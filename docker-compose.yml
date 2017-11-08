@@ -26,7 +26,6 @@ services:
       volumes:
         - ${NGINX_HTML_PATH}:/var/www/html
         - ${PHP_FPM_LOG_PATH}:/var/log/php-fpm
-        - ./php-fpm/php.ini:/usr/local/etc/php/conf.d/php.ini
       depends_on:
           - mariadb
 
@@ -35,7 +34,6 @@ services:
       volumes:
         - ${NGINX_HTML_PATH}:/var/www/html
         - ${PHP_FPM_LOG_PATH}:/var/log/php-fpm
-        - ./php-fpm/php.ini:/usr/local/etc/php/conf.d/php.ini
       depends_on:
           - mariadb
 
