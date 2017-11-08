@@ -82,3 +82,7 @@ services:
         - ${REDIS_LOG_PATH}:/var/log/redis
       ports:
         - "${REDIS_PORT}:6379"
+        
+### Volumes Settings #########################################
+volumes:
+  mysql-data:
