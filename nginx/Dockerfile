@@ -6,7 +6,7 @@ ENV TZ=Asia/Taipei
 RUN apt-get update; apt-get install -y openssl; apt-get install -y vim
 
 ADD ./nginx.conf /etc/nginx/
-ADD ./sites/ /etc/nginx/sites-available/
+ADD ./sites/ /etc/nginx/sites-enabled/
 
 RUN rm /etc/nginx/conf.d/default.conf
 
