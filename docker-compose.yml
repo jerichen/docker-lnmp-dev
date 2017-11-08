@@ -22,27 +22,23 @@ services:
 ### PHP-FPM Container #######################################
 
     php-fpm-71:
-      images: jerichen/php71:latest
+      image: jerichen/php71:latest
       volumes:
         - ${NGINX_HTML_PATH}:/var/www/html
         - ${PHP_FPM_LOG_PATH}:/var/log/php-fpm
         - ./php-fpm/php.ini:/usr/local/etc/php/conf.d/php.ini
-      expose:
-        - "9000"
       depends_on:
           - mariadb
 
     php-fpm-56:
-      build:
-        images: jerichen/php56:latest
+      image: jerichen/php56:latest
       volumes:
         - ${NGINX_HTML_PATH}:/var/www/html
         - ${PHP_FPM_LOG_PATH}:/var/log/php-fpm
         - ./php-fpm/php.ini:/usr/local/etc/php/conf.d/php.ini
-      expose:
-        - "9000"
       depends_on:
           - mariadb
+
     php-fpm-55:
       build:
         context: ./php-fpm
