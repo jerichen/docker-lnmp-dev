@@ -26,23 +26,16 @@ services:
       volumes:
         - ${NGINX_HTML_PATH}:/var/www/html
         - ${PHP_FPM_LOG_PATH}:/var/log/php-fpm
-        - ./php-fpm/php.ini:/usr/local/etc/php/conf.d/php.ini
-      expose:
-        - "9000"
       depends_on:
           - mariadb
 
     php-fpm-56:
-      build:
-        images: jerichen/php56:latest
       volumes:
         - ${NGINX_HTML_PATH}:/var/www/html
         - ${PHP_FPM_LOG_PATH}:/var/log/php-fpm
-        - ./php-fpm/php.ini:/usr/local/etc/php/conf.d/php.ini
-      expose:
-        - "9000"
       depends_on:
           - mariadb
+          
     php-fpm-55:
       build:
         context: ./php-fpm
@@ -55,17 +48,16 @@ services:
         - "9000"
       depends_on:
           - mariadb
+          
 ### MySQL Container #########################################
 
     mariadb:
       image: mariadb:5.5.57
-      volumes:
-        - mysql-data:/var/lib/mysql
-        - ${MYSQL_LOG_PATH}:/var/log/msql
       ports:
         - "${MYSQL_PORT}:3306"
       volumes:
-        - ${MYSQL_DATA_PATH}:/var/lib/mysql
+        - mysql-data:/var/lib/mysql
+        - ${MYSQL_LOG_PATH}:/var/log/mysql
       environment:
         - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
         - MYSQL_DATABASE=${MYSQL_DATABASE}
