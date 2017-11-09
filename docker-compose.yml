@@ -3,6 +3,19 @@ version: '3'
 
 services:
 
+### selenium Server Container ##################################
+
+    selenium:
+      image: selenium/standalone-chrome
+      volumes:
+        - ${NGINX_HTML_PATH}:/var/www/html
+      expose:
+        - "9000"
+      depends_on:
+        - nginx
+      links:
+        -  nginx:blog.dev
+ 
 ### Nginx Server Container ##################################
 
     nginx:
@@ -66,15 +79,6 @@ services:
         - MYSQL_USER=${MYSQL_USER}
         - MYSQL_PASSWORD=${MYSQL_PASSWORD}
 
-### Redis Container #########################################
-
-    redis:
-      image: redis
-      volumes:
-        - ${REDIS_LOG_PATH}:/var/log/redis
-      ports:
-        - "${REDIS_PORT}:6379"
-        
 ### Volumes Settings #########################################
 volumes:
   mysql-data:
