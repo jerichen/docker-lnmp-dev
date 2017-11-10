@@ -18,5 +18,7 @@
     - 說明 : 透過nginx/sites/php*.conf 當php版本的設定樣版
     
 * Laravel dusk 搭配 Selenium Chroms Firefox browse Testing
-    - 說明 : 控制台 http://127.0.0.1:4444/grid/console 
+    - 說明 :    
+            	控制台 http://127.0.0.1:4444/grid/console    
+            	driver : http://selenium-hub:4444/wd/hub 
 
