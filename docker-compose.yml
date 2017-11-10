@@ -62,22 +62,65 @@ services:
         - "9000"
       depends_on:
           - mariadb
+          
 ### MySQL Container #########################################
 
     mariadb:
       image: mariadb:5.5.57
-      volumes:
-        - mysql-data:/var/lib/mysql
-        - ${MYSQL_LOG_PATH}:/var/log/msql
       ports:
         - "${MYSQL_PORT}:3306"
       volumes:
-        - ${MYSQL_DATA_PATH}:/var/lib/mysql
+        - mysql-data:/var/lib/mysql
+        - ${MYSQL_LOG_PATH}:/var/log/mysql
       environment:
         - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
         - MYSQL_DATABASE=${MYSQL_DATABASE}
         - MYSQL_USER=${MYSQL_USER}
         - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+
+### Redis Container #########################################
+
+    redis:
+      image: redis
+      volumes:
+        - ${REDIS_LOG_PATH}:/var/log/redis
+      ports:
+        - "${REDIS_PORT}:6379"
+        
+### selenium Server Container ##################################
+
+    selenium-hub:
+        image: selenium/hub  
+        volumes:
+          - ${SELENIUM_LOG_PATH}:/var/log/selenium        
+        ports:
+          - "${SELENIUM_PORT}:4444"
+        expose:
+          - "9000"
+        depends_on:
+          - nginx
+          
+    chrome:
+        image: selenium/node-chrome-debug
+        environment:
+          HUB_PORT_4444_TCP_ADDR: 'hub'
+          HUB_PORT_4444_TCP_PORT: 4444
+          NODE_MAX_INSTANCES: 3
+          NODE_MAX_SESSION: 3
+        links:          
+          - selenium-hub:hub
+          - nginx:blog.dev
+          
+    firefox:
+        image: selenium/node-firefox-debug
+        environment:
+          HUB_PORT_4444_TCP_ADDR: 'hub'
+          HUB_PORT_4444_TCP_PORT: 4444
+          NODE_MAX_INSTANCES: 3
+          NODE_MAX_SESSION: 3
+        links:          
+          - selenium-hub:hub
+          - nginx:blog.dev
 
 ### Volumes Settings #########################################
 volumes:
