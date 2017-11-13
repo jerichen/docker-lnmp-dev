@@ -3,19 +3,6 @@ version: '3'
 
 services:
 
-### selenium Server Container ##################################
-
-    selenium:
-      image: selenium/standalone-chrome
-      volumes:
-        - ${NGINX_HTML_PATH}:/var/www/html
-      expose:
-        - "9000"
-      depends_on:
-        - nginx
-      links:
-        -  nginx:blog.dev
- 
 ### Nginx Server Container ##################################
 
     nginx:
