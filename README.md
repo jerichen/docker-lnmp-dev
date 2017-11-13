@@ -20,5 +20,5 @@
 * Laravel dusk 搭配 Selenium Chroms Firefox browse Testing
     - 說明 :    
             	控制台 http://127.0.0.1:4444/grid/console    
-            	driver : http://127.0.0.1:4444/wd/hub 
+            	driver : http://selenium-hub:4444/wd/hub 
 
