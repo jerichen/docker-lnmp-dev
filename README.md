@@ -1,4 +1,4 @@
-# docker 多容器部署LNMP 
+# Docker 多容器部署LNMP 
 ## Nginx + php-fpm + Mysql + Redis + Selenium
 
 **操作方法**
