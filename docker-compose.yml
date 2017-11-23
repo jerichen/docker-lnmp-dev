@@ -97,6 +97,8 @@ services:
         links:          
           - selenium-hub:hub
           - nginx:blog.dev
+        ports:
+          - "${CHROME_PORT}:5900"
           
     firefox:
         image: selenium/node-firefox-debug
@@ -108,6 +110,8 @@ services:
         links:          
           - selenium-hub:hub
           - nginx:blog.dev
+        ports:
+          - "${FIREFOX_PORT}:5901"
 
 ### Volumes Settings #########################################
 volumes:
