@@ -21,4 +21,11 @@
     - 說明 :    
             	控制台 http://127.0.0.1:4444/grid/console    
             	driver : http://selenium-hub:4444/wd/hub 
+            	
+    - 開啟 vnc 觀看測試畫面
+              chrome
+              address : vnc://127.0.0.1:5900
+              password : secret
+      
+    
 
